@@ -28,4 +28,5 @@ jobs:
           folder: storybook-static
           target-folder: storybook
           clean: true
-          clean-exclude: !/storybook/
+          clean-exclude: |-
+            !/storybook/
