@@ -26,7 +26,4 @@ jobs:
       - uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: storybook-static
-          target-folder: storybook
           clean: true
-          clean-exclude: |-
-            !/storybook/
