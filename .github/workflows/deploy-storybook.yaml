@@ -1,0 +1,31 @@
+name: Deploy Storybook
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-deploy:
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: package.json
+      - run: npm add -g @antfu/ni
+      - run: corepack enable
+      - run: nci
+      - run: nr build-storybook
+      - uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: storybook-static
+          target-folder: storybook
+          clean: true
+          clean-exclude: !/storybook/
