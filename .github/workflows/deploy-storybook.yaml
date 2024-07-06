@@ -22,7 +22,7 @@ jobs:
       - run: nci
       - run: nr build-storybook
         env:
-          BASE_URL: ${GITHUB_REPOSITORY#${GITHUB_REPOSITORY_OWNER}/}
+          BASE_URL: '/microcms-fields/'
       - uses: actions/upload-pages-artifact@v3
         with:
           path: storybook-static
